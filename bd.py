@@ -29,6 +29,7 @@ class BD:
 
 	def insert_in_tables(self, details_table=[], drons_table=[], dron_map=[]):
 
+		details_table = self.filter_details_table(details_table)
 		self.cursor.executemany("INSERT INTO details VALUES (?,?,?)", details_table)
 		self.conn.commit()
 		self.cursor.executemany("INSERT INTO drons VALUES (?,?,?)", drons_table)
@@ -36,8 +37,37 @@ class BD:
 		self.cursor.executemany("INSERT INTO dron_map VALUES (?,?,?,?)", dron_map)
 		self.conn.commit()
 
+	def filter_details_table(self, details_table):
+		"""
+		фильтрует детали для бд
+		:param details_table:
+		:return: ([list for table], [лист ошибок почему вида : строка 23 не записана в бд,
+																так как содержится буква в числе])
+		"""
+		index_line = 1
+		for detail in details_table:
+			detail[0]
 
-def test():
+	def filter_drons_table(self, drons_table):
+		"""
+			фильтрует drons для бд
+			:param drons_table:
+			:return: ([list for table], [лист ошибок почему вида : строка 23 не записана в бд,
+																		так как содержится буква в числе])
+		"""
+		pass
+
+	def filter_dron_map(self, dron_map):
+		"""
+			фильтрует детали для бд
+			:param dron_map:
+			:return: ([list for table], [лист ошибок почему вида : строка 23 не записана в бд,
+																		так как содержится буква в числе])
+		"""
+		pass
+
+
+def test_bd():
 	# Тестовые данные
 	details_table = [
 		(1, 'detail1', 'batter'),
